@@ -1,0 +1,31 @@
+CREATE TABLE usuario(
+	id_usuario INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	correo VARCHAR(100),
+	clave VARCHAR(100),
+);
+
+CREATE TABLE contenido(
+	id_contenido INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	nombre VARCHAR(100),
+	descripcion VARCHAR(100),
+	fecha_creacion DATETIME,
+	fecha_actualizacion DATETIME,
+);
+
+CREATE TABLE apuntes(
+	id_apunte INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	nombre_apunte VARCHAR(100),
+	url VARCHAR(100),
+	fecha_creacion DATETIME,
+	fecha_actualizacion DATETIME,
+	id_contenido INT NOT NULL,
+	id_tipo_apunte INT NOT NULL,
+);
+
+CREATE TABLE tipo_apunte(
+	id_tipo_apunte INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	tipo VARCHAR(100),
+);
+
+ALTER TABLE apuntes ADD FOREIGN KEY(id_contenido) REFERENCES contenido(id_contenido);
+ALTER TABLE apuntes ADD FOREIGN KEY(id_tipo_apunte) REFERENCES tipo_apunte(id_tipo_apunte);
